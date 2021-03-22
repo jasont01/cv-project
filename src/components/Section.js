@@ -2,24 +2,16 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 import Entry from "./Entry";
 import AddBtn from "./AddBtn";
-import Modal from "./Modal";
 
 class Section extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       entries: [],
-      isModalOpen: false,
     };
   }
 
-  toggleModal = () => {
-    this.setState({ isModalOpen: !this.state.isModalOpen });
-  };
-
   createEntry = (data) => {
-    this.toggleModal();
-    console.log(data);
     this.setState({
       entries: this.state.entries.concat(uuid()),
     });
@@ -46,14 +38,7 @@ class Section extends React.Component {
             />
           );
         })}
-        <AddBtn onClick={this.toggleModal} />
-        <Modal
-          isOpen={this.state.isModalOpen}
-          title="Add New Entry"
-          fields={this.props.fields}
-          onSave={this.createEntry}
-          onCancel={this.toggleModal}
-        />
+        <AddBtn onClick={this.createEntry} />
       </div>
     );
   }

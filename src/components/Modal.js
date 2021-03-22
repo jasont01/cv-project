@@ -49,7 +49,6 @@ class entryModal extends React.Component {
     arr.forEach((field) => {
       if (typeof field === "object") {
         for (const key in field) {
-          //if (!this.state.hasOwnProperty(field)) {
           Object.assign(obj, { [key]: this.formatState(field[key]) });
         }
       } else {
@@ -61,8 +60,6 @@ class entryModal extends React.Component {
     return obj;
   };
 
-  // clear fields ??
-
   render() {
     return (
       <Modal
@@ -71,7 +68,11 @@ class entryModal extends React.Component {
         onHide={this.props.onCancel}
       >
         <Modal.Header>
-          <Modal.Title>{this.props.title}</Modal.Title>
+          <Modal.Title>
+            {Object.keys(this.props.data).length === 0
+              ? "Add New Entry"
+              : "Edit Entry"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>{this.getModalBody()}</Modal.Body>
         <Modal.Footer>

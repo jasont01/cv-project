@@ -8,7 +8,9 @@ class Entry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false,
+      data: {},
+      newEntry: true,
+      isModalOpen: true,
     };
   }
 
@@ -17,8 +19,16 @@ class Entry extends React.Component {
   };
 
   saveEntry = (data) => {
-    this.setState(data);
+    this.setState({ data: data, newEntry: false });
     this.toggleModal();
+  };
+
+  onCancel = () => {
+    if (this.state.newEntry) this.props.remove(this.props.id);
+    this.toggleModal();
+
+    // reset modal fields
+    this.setState({ data: this.state.data });
   };
 
   render() {
@@ -33,11 +43,10 @@ class Entry extends React.Component {
         </div>
         <Modal
           isOpen={this.state.isModalOpen}
-          data={this.state}
-          title="Edit Entry"
+          data={this.state.data}
           fields={fields}
           onSave={this.saveEntry}
-          onCancel={this.toggleModal}
+          onCancel={this.onCancel}
         />
       </div>
     );
