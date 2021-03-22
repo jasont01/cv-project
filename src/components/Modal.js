@@ -52,24 +52,26 @@ class entryModal extends React.Component {
           Object.assign(obj, { [key]: this.formatState(field[key]) });
         }
       } else {
-        Object.assign(obj, {
-          [field]: this.state[field],
-        });
+        if (this.state.hasOwnProperty(field)) {
+          Object.assign(obj, {
+            [field]: this.state[field],
+          });
+        }
       }
     });
     return obj;
   };
 
   render() {
+    const { isOpen, onSave, onCancel, isGeneral, data } = this.props;
+
     return (
-      <Modal
-        show={this.props.isOpen}
-        centered="true"
-        onHide={this.props.onCancel}
-      >
+      <Modal show={isOpen} centered="true" onHide={onCancel}>
         <Modal.Header>
           <Modal.Title>
-            {Object.keys(this.props.data).length === 0
+            {isGeneral
+              ? "General Info"
+              : Object.keys(data).length === 0
               ? "Add New Entry"
               : "Edit Entry"}
           </Modal.Title>
@@ -80,14 +82,14 @@ class entryModal extends React.Component {
             type="button"
             className="btn btn-secondary"
             data-bs-dismiss="modal"
-            onClick={this.props.onCancel}
+            onClick={onCancel}
           >
             Cancel
           </button>
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => this.props.onSave(this.formatState())}
+            onClick={() => onSave(this.formatState())}
           >
             Save
           </button>

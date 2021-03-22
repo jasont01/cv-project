@@ -10,7 +10,7 @@ class Entry extends React.Component {
     this.state = {
       data: {},
       newEntry: true,
-      isModalOpen: true,
+      isModalOpen: this.props.showModal,
     };
   }
 
@@ -32,21 +32,27 @@ class Entry extends React.Component {
   };
 
   render() {
-    const { id, fields, remove } = this.props;
+    const { id, fields, remove, initialData, isGeneral } = this.props;
+    const { data, isModalOpen } = this.state;
 
     return (
       <div className="entry mb-4">
-        <Fields data={this.state} />
+        <Fields
+          data={
+            isGeneral && Object.entries(data).length === 0 ? initialData : data
+          }
+        />
         <div className="entry-controls">
-          <EditBtn id={id} onClick={this.toggleModal} />
+          <EditBtn onClick={this.toggleModal} />
           <DeleteBtn id={id} onClick={remove} />
         </div>
         <Modal
-          isOpen={this.state.isModalOpen}
-          data={this.state.data}
+          isOpen={isModalOpen}
+          data={data}
           fields={fields}
           onSave={this.saveEntry}
           onCancel={this.onCancel}
+          isGeneral={isGeneral}
         />
       </div>
     );

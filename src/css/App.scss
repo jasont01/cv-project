@@ -1,12 +1,23 @@
-.section-header {
+$backgroundColor: cornsilk;
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: $backgroundColor;
+}
+
+.section-header,
+.name {
   text-transform: capitalize;
 }
 
-.general > h3,
-.general > hr,
-.general > .add-entry,
-.general > div > div > .delete-entry {
-  display: none;
+.general {
+  h3,
+  hr,
+  .add-entry {
+    display: none;
+  }
 }
 
 .section,

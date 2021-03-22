@@ -1,8 +1,6 @@
-import "../css/App.css";
 import Header from "./Header";
 import Section from "./Section";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
+import GithubCorner from "./GithubCorner";
 
 const FIELDS = {
   general: ["name", "email", "phone", "linkedin", "github"],
@@ -22,7 +20,8 @@ function App() {
       <Header />
       <main className="container">
         <div className="row">
-          <div className="col-10">
+          <div className="col-2"></div>
+          <div className="col-8 mt-5 pt-5">
             {sections.map((section, idx) => {
               return (
                 <Section
@@ -34,10 +33,13 @@ function App() {
               );
             })}
           </div>
-          <Sidebar />
         </div>
       </main>
-      <Footer />
+      <GithubCorner
+        url="https://github.com/jasont01/cv-project"
+        vOffset="56px"
+        fillColor="steelblue"
+      />
     </div>
   );
 }

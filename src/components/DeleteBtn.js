@@ -2,7 +2,7 @@ const DeleteBtn = (props) => {
   return (
     <button
       type="button"
-      className="btn btn-primary delete-entry"
+      className="btn btn-primary delete-entry ms-3"
       onClick={() => props.onClick(props.id)}
     >
       <svg
