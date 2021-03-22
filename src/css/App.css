@@ -1,0 +1,44 @@
+.section-header {
+  text-transform: capitalize;
+}
+
+.general > h3,
+.general > hr,
+.general > .add-entry,
+.general > div > div > .delete-entry {
+  display: none;
+}
+
+.section,
+.entry {
+  position: relative;
+}
+
+.add-entry,
+.entry-controls {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.name {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.company,
+.school {
+  font-size: x-large;
+}
+
+.dateRange {
+  display: flex;
+  font-size: small;
+  color: #6c757d;
+}
+
+.to::before {
+  content: "-";
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+}
